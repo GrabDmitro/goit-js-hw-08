@@ -5,7 +5,15 @@ const refs = {
   textarea: document.querySelector('.feedback-form textarea'),
 };
 const STORAGE_FEEDBACK_KEY = 'feedback-form-state';
-
+if (!localStorage.getItem(STORAGE_FEEDBACK_KEY)) {
+  localStorage.setItem(
+    STORAGE_FEEDBACK_KEY,
+    JSON.stringify({
+      name: '',
+      message: '',
+    })
+  );
+}
 refs.name.value = JSON.parse(localStorage.getItem(STORAGE_FEEDBACK_KEY)).name;
 refs.textarea.value = JSON.parse(
   localStorage.getItem(STORAGE_FEEDBACK_KEY)
