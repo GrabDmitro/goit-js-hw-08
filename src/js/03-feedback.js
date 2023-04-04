@@ -18,33 +18,6 @@ refs.name.value = JSON.parse(localStorage.getItem(STORAGE_FEEDBACK_KEY)).name;
 refs.textarea.value = JSON.parse(
   localStorage.getItem(STORAGE_FEEDBACK_KEY)
 ).message;
-
-// refs.name.addEventListener(
-//   'input',
-//   throttle(e => {
-//     localStorage.setItem(
-//       STORAGE_FEEDBACK_KEY,
-//       JSON.stringify({
-//         name: e.target.value,
-//         message: refs.textarea.value,
-//       })
-//     );
-//   }),
-//   1000
-// );
-// refs.textarea.addEventListener(
-//   'input',
-//   throttle(e => {
-//     localStorage.setItem(
-//       STORAGE_FEEDBACK_KEY,
-//       JSON.stringify({
-//         name: refs.name.value,
-//         message: e.target.value,
-//       })
-//     );
-//   }),
-//   1000
-// );
 function saver(e) {
   if (!(e.target.nodeName === 'INPUT' || e.target.nodeName === 'TEXTAREA')) {
     return;
