@@ -19,29 +19,51 @@ refs.textarea.value = JSON.parse(
   localStorage.getItem(STORAGE_FEEDBACK_KEY)
 ).message;
 
-refs.name.addEventListener(
-  'input',
-  throttle(e => {
-    localStorage.setItem(
-      STORAGE_FEEDBACK_KEY,
-      JSON.stringify({
-        name: e.target.value,
-        message: refs.textarea.value,
-      })
-    );
-  }),
-  1000
-);
-refs.textarea.addEventListener(
-  'input',
-  throttle(e => {
-    localStorage.setItem(
-      STORAGE_FEEDBACK_KEY,
-      JSON.stringify({
-        name: refs.name.value,
-        message: e.target.value,
-      })
-    );
-  }),
-  1000
-);
+// refs.name.addEventListener(
+//   'input',
+//   throttle(e => {
+//     localStorage.setItem(
+//       STORAGE_FEEDBACK_KEY,
+//       JSON.stringify({
+//         name: e.target.value,
+//         message: refs.textarea.value,
+//       })
+//     );
+//   }),
+//   1000
+// );
+// refs.textarea.addEventListener(
+//   'input',
+//   throttle(e => {
+//     localStorage.setItem(
+//       STORAGE_FEEDBACK_KEY,
+//       JSON.stringify({
+//         name: refs.name.value,
+//         message: e.target.value,
+//       })
+//     );
+//   }),
+//   1000
+// );
+function saver(e) {
+  if (!(e.target.nodeName === 'INPUT' || e.target.nodeName === 'TEXTAREA')) {
+    return;
+  }
+  localStorage.setItem(
+    STORAGE_FEEDBACK_KEY,
+    JSON.stringify({
+      name: refs.name.value,
+      message: refs.textarea.value,
+    })
+  );
+}
+
+refs.form.addEventListener('input', throttle(saver, 1000));
+refs.form.addEventListener('submit', e => {
+  e.preventDefault();
+  formData = {
+    name: refs.name.value,
+    message: refs.textarea.value,
+  };
+  console.log(formData);
+});
