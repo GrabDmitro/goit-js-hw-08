@@ -4,6 +4,7 @@ const refs = {
   name: document.querySelector('.feedback-form input'),
   textarea: document.querySelector('.feedback-form textarea'),
 };
+let formData = null;
 const STORAGE_FEEDBACK_KEY = 'feedback-form-state';
 if (!localStorage.getItem(STORAGE_FEEDBACK_KEY)) {
   localStorage.setItem(
@@ -38,6 +39,6 @@ refs.form.addEventListener('submit', e => {
     name: refs.name.value,
     message: refs.textarea.value,
   };
-  Storage.clear();
+  localStorage.clear();
   console.log(formData);
 });
