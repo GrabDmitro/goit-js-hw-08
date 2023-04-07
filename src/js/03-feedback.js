@@ -39,6 +39,9 @@ refs.form.addEventListener('submit', e => {
     name: refs.name.value,
     message: refs.textarea.value,
   };
+  refs.name.value = '';
+  refs.textarea.value = '';
   localStorage.clear();
+
   console.log(formData);
 });
